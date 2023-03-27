@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { ContainerComponent } from './container/container.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HeaderComponent } from './header/header.component';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContainerComponent,
     NavigationComponent,
-    HeaderComponent
+    HeaderComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
