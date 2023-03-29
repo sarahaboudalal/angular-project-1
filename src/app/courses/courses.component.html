@@ -1,31 +1,41 @@
 <div>
-  <app-search></app-search>
+  <app-search (inputChange)="onSearchInputChange($event)"></app-search>
   <app-filter
     [all]="getAllCourses()"
     [free]="getFreeCourses()"
     [premium]="getPremiumCourses()"
+    (filterSelectionChange)="onFilterChange($event)"
   ></app-filter>
 </div>
-<div class="course-container" *ngFor="let course of courses">
-  <div class="course-card">
-    <div class="course-name">
-      <h4>{{ course.name }}</h4>
-    </div>
-    <div class="course-description">
-      <p>{{ course.description.slice(0, 80) }}...</p>
-    </div>
-    <div class="details">
-      <div
-        class="course-type"
-        [ngStyle]="{ color: course.type === 'Free' ? 'Green' : 'Red' }"
-      >
-        {{ course.type }}
+<ng-container *ngFor="let course of courses">
+  <!-- courseSelectedRadio === 'All' || course.type === courseSelectedRadio -->
+  <div
+    class="course-container"
+    *ngIf="
+      searchInputValue === '' ||
+      course.name.toLowerCase().includes(searchInputValue)
+    "
+  >
+    <div class="course-card">
+      <div class="course-name">
+        <h4>{{ course.name }}</h4>
       </div>
-      <div class="course-price"><b>Price:</b> ${{ course.price }}</div>
-    </div>
-    <div class="course-buttons">
-      <button class="btn btn-buy">Buy Now</button>
-      <button class="btn btn-show">Show Deatils</button>
+      <div class="course-description">
+        <p>{{ course.description.slice(0, 80) }}...</p>
+      </div>
+      <div class="details">
+        <div
+          class="course-type"
+          [ngStyle]="{ color: course.type === 'Free' ? 'Green' : 'Red' }"
+        >
+          {{ course.type }}
+        </div>
+        <div class="course-price"><b>Price:</b> ${{ course.price }}</div>
+      </div>
+      <div class="course-buttons">
+        <button class="btn btn-buy">Buy Now</button>
+        <button class="btn btn-show">Show Deatils</button>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>

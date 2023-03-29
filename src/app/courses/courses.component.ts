@@ -118,4 +118,16 @@ export class CoursesComponent {
   getPremiumCourses() {
     return this.courses.filter((course) => course.type === 'Premium').length;
   }
+
+  courseSelectedRadio: string = 'All';
+
+  onFilterChange(data: string) {
+    this.courseSelectedRadio = data;
+    // console.log(this.courseSelectedRadio);
+  }
+  searchInputValue: string = '';
+
+  onSearchInputChange(value: string) {
+    this.searchInputValue = value;
+  }
 }
